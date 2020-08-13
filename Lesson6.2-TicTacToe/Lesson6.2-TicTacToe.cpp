@@ -2,19 +2,49 @@
 //
 
 #include <iostream>
+#include "TicTacToe_funcs.h"
+#include <vector>
+#include "Lesson6.2-TicTacToe.h"
+
+//A game of tic tac toe.
+// 2 players, inputting into the same terminal.
+// 3x3 board game, represented by a data structure like a vector, or an array.
+// Eight winning combinations (top, bottom, hmiddle, left, right, vmiddle, diagltr, giadrtl)
+//
+// Challenges:
+// -- Make the game best of 3 or best of 5
+// -- Be able to play against the computer (random numbers picked?)
+// ---
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	bool bGameInProgress = true;
+	std::vector<char> gridSpaces = { '1', 'X', 'O', '4', '5', '6', '7', '8', '9' }; // positions 1 and 2 are pre-populated with X and O as an example.
+	int gridSpaceSelection;
+	bool turn = true;
+	bool bActivePlayerIsPlayerOne = true; //player 1 = true, player 2 false;
+	int playerOneWins = 0;
+	int playerTwoWins = 0;
+	int gamesPlayed = 0;
+
+	greet();
+
+	while (bGameInProgress == true && gamesPlayed < 5) {
+		//single game loop
+		for (int i = 0; i < 9; i++) {
+			drawBoard(gridSpaces);
+			gridSpaceSelection = playerPrompt(bActivePlayerIsPlayerOne);
+
+			//Update the Board
+			gridSpaces[gridSpaceSelection - 1] = gridSpaceReplaceAttempt(gridSpaces, gridSpaceSelection, bActivePlayerIsPlayerOne);
+
+			//check if the game is won
+			
+			//change player
+		}	
+		//end the game if it goes to 9 turns (draw??)
+		gamesPlayed++;
+		
+	}
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

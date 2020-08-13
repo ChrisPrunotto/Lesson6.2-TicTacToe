@@ -152,6 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lesson6.2-TicTacToe.cpp" />
+    <ClCompile Include="TicTacToe_funcs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lesson6.2-TicTacToe.h" />
+    <ClInclude Include="TicTacToe_funcs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
