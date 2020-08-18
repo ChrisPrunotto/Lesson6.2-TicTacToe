@@ -19,7 +19,6 @@
 int main()
 {
 	bool bGameInProgress = true;
-	std::vector<char> gridSpaces = { '1', 'X', 'O', '4', '5', '6', '7', '8', '9' }; // positions 1 and 2 are pre-populated with X and O as an example.
 	int gridSpaceSelection;
 	bool turn = true;
 	bool bActivePlayerIsPlayerOne = true; //player 1 = true, player 2 false;
@@ -29,22 +28,36 @@ int main()
 
 	greet();
 
-	while (bGameInProgress == true && gamesPlayed < 5) {
+	while (gamesPlayed < 5) {
 		//single game loop
-		for (int i = 0; i < 9; i++) {
-			drawBoard(gridSpaces);
-			gridSpaceSelection = playerPrompt(bActivePlayerIsPlayerOne);
+		for (int i = 0; i < 8; i++) {
+			bGameInProgress = true;
 
-			//Update the Board
-			gridSpaces[gridSpaceSelection - 1] = gridSpaceReplaceAttempt(gridSpaces, gridSpaceSelection, bActivePlayerIsPlayerOne);
+			while (bGameInProgress) {
+				//draw the board
+				drawBoard();
 
-			//check if the game is won
-			
-			//change player
+				//check for a valid choice
+				setPosition(bActivePlayerIsPlayerOne);
+
+				//check for a winner set gameinprogress to false if there is one.
+				bGameInProgress = !(checkForWinner());
+
+				//check for draw
+				if (bGameInProgress = true) 
+				{ 
+					bGameInProgress = !checkForDraw(); 
+				}
+
+				//change the player
+				bActivePlayerIsPlayerOne = !bActivePlayerIsPlayerOne;
+			}
 		}	
+
+		std::cout << "Game Over, commencing game #" << gamesPlayed + 1;
 		//end the game if it goes to 9 turns (draw??)
 		gamesPlayed++;
-		
+		resetBoard();
 	}
 
 }
